@@ -15,3 +15,11 @@ resource "aws_s3_bucket_policy" "default" {
   bucket = aws_s3_bucket.default.id
   policy = templatefile("s3-policy.json", { bucket = var.bucketName })
 }
+
+resource "aws_s3_bucket_website_configuration" "default" {
+  bucket = aws_s3_bucket.default.id
+
+  index_document {
+    suffix = "index.html"
+  }
+}
